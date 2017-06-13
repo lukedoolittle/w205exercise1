@@ -11,7 +11,7 @@ county_name string,
 phone_number string,
 hospital_type string,
 hospital_ownership string,
-emergency_services
+emergency_services string
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTIES (
 "separatorChar" = ",",
