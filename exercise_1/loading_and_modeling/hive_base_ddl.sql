@@ -1,5 +1,5 @@
-DROPTABLE Hospitals;
-CREATE EXTERNAL TABLE IF NOT EXISTS Hospitals 
+DROP TABLE hospitals;
+CREATE EXTERNAL TABLE IF NOT EXISTS hospitals 
 (
 provider_id string,
 hospital_name string,
@@ -20,8 +20,8 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTI
 STORED AS TEXTFILE 
 LOCATION '/user/w205/hospital_compare/hospitals';
 
-DROPTABLE Readmissions;
-CREATE EXTERNAL TABLE IF NOT EXISTS Readmissions
+DROP TABLE readmissions;
+CREATE EXTERNAL TABLE IF NOT EXISTS readmissions
 (
 provider_id string,
 hospital_name string,
@@ -51,8 +51,8 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTI
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions';
 
-DROPTABLE EffectiveCare;
-CREATE EXTERNAL TABLE IF NOT EXISTS EffectiveCare
+DROP TABLE effective_care;
+CREATE EXTERNAL TABLE IF NOT EXISTS effective_care
 (
 provider_id string,
 hospital_name string,
@@ -80,8 +80,8 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTI
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/effective_care';
 
-DROPTABLE Measures;
-CREATE EXTERNAL TABLE IF NOT EXISTS Measures
+DROP TABLE Measures;
+CREATE EXTERNAL TABLE IF NOT EXISTS measures
 (
 measure_name string,
 measure_id string,
@@ -97,9 +97,10 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTI
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare/Measures';
+LOCATION '/user/w205/hospital_compare/measures';
 
-CREATE EXTERNAL TABLE IF NOT EXISTS SurveyResponses
+DROP TABLE survey_responses;
+CREATE EXTERNAL TABLE survey_responses
 (
 provider_id string,
 hospital_name string,
@@ -142,4 +143,4 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTI
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare/surveys_responses';
+LOCATION '/user/w205/hospital_compare/survey_responses';

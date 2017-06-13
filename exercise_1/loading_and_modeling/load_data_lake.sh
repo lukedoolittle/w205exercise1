@@ -16,23 +16,23 @@ unzip Hospital_Revised_Flatfiles.zip -d Hospital_Revised_Flatfiles
 tail -n +2 "Hospital_Revised_Flatfiles/Hospital General Information.csv" > hospitals.csv
 tail -n +2 "Hospital_Revised_Flatfiles/Timely and Effective Care - Hospital.csv" > effective_care.csv
 tail -n +2 "Hospital_Revised_Flatfiles/Readmissions and Deaths - Hospital.csv" > readmissions.csv
-tail -n +2 "Hospital_Revised_Flatfiles/Measure Dates.csv" >	Measures.csv
-tail -n +2 "Hospital_Revised_Flatfiles/hvbp_hcahps_11_10_2016.csv" > surveys_responses.csv
+tail -n +2 "Hospital_Revised_Flatfiles/Measure Dates.csv" > Measures.csv
+tail -n +2 "Hospital_Revised_Flatfiles/hvbp_hcahps_11_10_2016.csv" > survey_responses.csv
 
 # create the root directory and each subdirectory in HSFS
 hdfs dfs -mkdir /user/w205/hospital_compare
 hdfs dfs -mkdir /user/w205/hospital_compare/hospitals
 hdfs dfs -mkdir /user/w205/hospital_compare/effective_care
 hdfs dfs -mkdir /user/w205/hospital_compare/readmissions
-hdfs dfs -mkdir /user/w205/hospital_compare/Measures
-hdfs dfs -mkdir /user/w205/hospital_compare/surveys_responses
+hdfs dfs -mkdir /user/w205/hospital_compare/measures
+hdfs dfs -mkdir /user/w205/hospital_compare/survey_responses
 
 # copy each of the csv files into HDFS
 hdfs dfs -put hospitals.csv /user/w205/hospital_compare/hospitals
 hdfs dfs -put effective_care.csv /user/w205/hospital_compare/effective_care
 hdfs dfs -put readmissions.csv /user/w205/hospital_compare/readmissions
 hdfs dfs -put Measures.csv /user/w205/hospital_compare/Measures
-hdfs dfs -put surveys_responses.csv /user/w205/hospital_compare/surveys_responses
+hdfs dfs -put survey_responses.csv /user/w205/hospital_compare/survey_responses
 
 # change directory back to original
 cd $MY_CWD
