@@ -28,7 +28,7 @@ effectiveness_of_care_national_comparison_footnote string,
 timeliness_of_care_national_comparison string,
 timeliness_of_care_national_comparison_footnote string,
 efficient_use_of_medical_imaging_national_comparison string,
-efficient_use_of_medical_imaging_national_comparison_footnote string,
+efficient_use_of_medical_imaging_national_comparison_footnote string
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTIES (
 "separatorChar" = ",",
@@ -174,7 +174,8 @@ cleanliness_and_quietness_of_hospital_environment_performance_rate string,
 cleanliness_and_quietness_of_hospital_environment_achievement_points string,
 cleanliness_and_quietness_of_hospital_environment_improvement_points string,
 cleanliness_and_quietness_of_hospital_environment_dimension_score string,
-discharge_information_floor	discharge_information_achievement_threshold string,
+discharge_information_floor string,
+discharge_information_achievement_threshold string,
 discharge_information_benchmark string,
 discharge_information_baseline_rate string,
 discharge_information_performance_rate string,
