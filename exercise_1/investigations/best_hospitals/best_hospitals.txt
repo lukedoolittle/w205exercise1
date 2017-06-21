@@ -1,0 +1,8 @@
+What hospitals are models of high-quality care? That is, which hospitals have the most consistently high scores for a variety of procedures.
+
+To determine the best hospitals we will take a weighted average of the relevant measures at each hospital and use that to create a score. This scaled measure will take into account the following:
+-When the measure was taken
+-The score relative to the maximum and minimum
+-The importance of the measure relative to other measures
+
+PYTHON OUTPUT HERE

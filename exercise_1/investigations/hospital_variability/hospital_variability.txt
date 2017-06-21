@@ -1,0 +1,5 @@
+Which procedures have the greatest variability between hospitals?
+
+For variability between procedures we used 2 measures for general numerical variability: the variance and the range, along with the variance as a percentage of the mean
+
+PYTHON RESULT HERE
