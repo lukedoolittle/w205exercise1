@@ -1,5 +1,5 @@
-DROP TABLE scores;
-CREATE TABLE scores AS SELECT 
+DROP TABLE parameters;
+CREATE TABLE parameters AS SELECT 
 measure_id,
 measure_name description,
 cast(concat(

@@ -1,8 +1,45 @@
 What hospitals are models of high-quality care? That is, which hospitals have the most consistently high scores for a variety of procedures.
 
-To determine the best hospitals we will take a weighted average of the relevant measures at each hospital and use that to create a score. This scaled measure will take into account the following:
--When the measure was taken
--The score relative to the maximum and minimum
--The importance of the measure relative to other measures
+
+To determine the best hospitals we will select some subset of the measures in the parameters table to observe for all hospitals and then take a weighted average of those relevant measures at each hospital to create a score. To select the measures to observe we will use the following critera:
+
+* The measure should have a score for a large portion of the hospitals to allow for a robust comparison
+* The measure date should be recent
+* The measure should be relevant to the quality of care for the patient; this is more of a qualitative requirement
+
+
+Given the above criteria we have selected the following measures to use in evaluating the quality of care:
+
+* ED_1b - Median Time from ED Arrival to ED Departure for Admitted ED Patients
+* ED_2b - Admit Decision Time to ED Departure Time for Admitted Patients
+* OP_20 - Median Time from ED Arrival to Provider Contact for ED patients
+* OP_18b - Median Time from ED Arrival to ED Departure for Discharged ED Patients
+* OP_22 - Left without being seen
+* OP_21 - Median Time to Pain Management for Long Bone Fracture
+* OP_29 - Appropriate Follow-Up Interval for Normal Colonoscopy in Average Risk Patients
+* OP_30 - Colonoscopy Interval for Patients with a History of Adenomatous Polyps - Avoidance of Inappropriate Use
+* OP_5 - Median Time to ECG
+* READM_30_HOSP_WIDE - 30-Day Hospital-Wide All-Cause Unplanned Readmission Rate
+* READM_30_PN - Pneumonia 30-Day Readmission Rate
+* READM_30_COPD - Chronic Obstructive Pulmonary Disease (COPD) 30-Day Readmission Rate
+* READM_30_HF - Heart Failure (HF) 30-Day Readmission Rate
+* READM_30_HIP_KNEE - 30-Day Readmission Rate Following Elective Primary Total Hip Arthroplasty (THA) and/or Total Knee Arthroplasty (TKA)
+* READM_30_STK - Stroke (STK) 30-Day Readmission Rate
+* READM_30_AMI - Acute Myocardial Infarction (AMI) 30-Day Readmission Rate
+* MORT_30_PN - Pneumonia 30-Day Mortality Rate
+* MORT_30_HF - Heart Failure (HF) 30-Day Mortality Rate
+* MORT_30_COPD - Chronic Obstructive Pulmonary Disease (COPD) 30-Day Mortality Rate
+* MORT_30_STK - Acute Ischemic Stroke (STK) 30-Day Mortality Rate
+* MORT_30_AMI - Acute Myocardial Infarction (AMI) 30-Day Mortality Rate
+
+
+For each measure we will:
+
+* Normalize the score on [0,1] relative to the max and min of the measure across all hospitals
+* Give the lower bound score to any hospitals that do not have a record for the measure
+* Scale that score based on "importance", a subjective assessment
+
+
+The final quality of care score will be based on both the mean and standard deviation for all the scores calculated above
 
 PYTHON OUTPUT HERE
