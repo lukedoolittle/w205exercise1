@@ -49,10 +49,10 @@ SELECT
 provider_id,
 measure_id metric_id,
 CASE 
-WHEN score = 'Yes' THEN 1
-WHEN score = 'Y' THEN 1
-WHEN score = 'No' THEN 0
-WHEN score like 'N' THEN 0
+WHEN measure_response = 'Yes' THEN 1
+WHEN measure_response = 'Y' THEN 1
+WHEN measure_response = 'No' THEN 0
+WHEN measure_response like 'N' THEN 0
 ELSE null END score,
 null lower_estimate,
 null higher_estimate,
