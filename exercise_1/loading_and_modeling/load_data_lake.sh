@@ -23,7 +23,6 @@ declare -A file_mapping=( \
 ["infections"]="Healthcare Associated Infections - Hospital.csv" \
 ["imaging"]="Outpatient Imaging Efficiency - Hospital.csv" \
 ["structural_measures"]="Structural Measures - Hospital.csv" \
-["readmission_reduction"]="READMISSION REDUCTION.csv" \
 ["heart_attack_scores"]="hvbp_ami_11_14_2016.csv" \
 ["outcome_scores"]="hvbp_clinical_care_outcomes_11_10_2016.csv" \
 ["immunization_scores"]="hvbp_imm2_11_10_2016.csv" \
@@ -46,7 +45,7 @@ hdfs dfs -mkdir /user/w205/hospital_compare/"$name";
 hdfs dfs -put "$name".csv /user/w205/hospital_compare/"$name"
 done
 
-#clean up now unneeded files
+# clean up now unneeded files
 rm -r Hospital_Revised_Flatfiles
 rm Hospital_Revised_Flatfiles.zip
 
