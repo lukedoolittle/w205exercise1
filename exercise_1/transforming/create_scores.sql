@@ -57,7 +57,7 @@ ELSE null END score,
 null lower_estimate,
 null higher_estimate,
 null sample_size
-FROM structural
+FROM structural_measures
 
 UNION
 SELECT 
