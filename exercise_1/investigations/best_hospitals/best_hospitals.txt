@@ -7,6 +7,9 @@ To determine the best hospitals we will select some subset of the measures in th
 * The measure date should be recent
 * The measure should be relevant to the quality of care for the patient; this is more of a qualitative requirement
 
+Assumptions:
+
+* Cost is a concern orthogonal to quality of care (that is to say knowing that a procedure has a high cost at a hospital doesn't indicate anything about its quality) so we are not using any payment metrics here
 
 Given the above criteria we have selected the following measures to use in evaluating the quality of care:
 
