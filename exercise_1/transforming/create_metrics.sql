@@ -1,6 +1,6 @@
-DROP TABLE parameters;
-CREATE TABLE parameters AS SELECT 
-measure_id,
+DROP TABLE metrics;
+CREATE TABLE metrics AS SELECT 
+measure_id metric_id,
 measure_name description,
 cast(concat(
 	substr(measure_start_date, 7, 4), 
