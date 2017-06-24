@@ -40,7 +40,8 @@ hdfs dfs -mkdir /user/w205/hospital_compare
 # (2) create the appropriate subdirectory in HDFS
 # (3) place the modified file in the new subdirectory
 for name in "${!file_mapping[@]}";
-do tail -n +2 "Hospital_Revised_Flatfiles/${file_mapping[$name]}" > "$name.csv";
+do echo "creating $name in hdfs";
+tail -n +2 "Hospital_Revised_Flatfiles/${file_mapping[$name]}" > "$name.csv";
 hdfs dfs -mkdir /user/w205/hospital_compare/"$name";
 hdfs dfs -put "$name".csv /user/w205/hospital_compare/"$name"
 done

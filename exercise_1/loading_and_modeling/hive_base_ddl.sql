@@ -451,7 +451,8 @@ weighted_patient_and_caregiver_centered_experience_of_care_care_coordination_dom
 unweighted_normalized_safety_domain_score string,
 weighted_safety_domain_score string,
 unweighted_normalized_efficiency_and_cost_reduction_domain_score string,
-weighted_efficiency_and_cost_reduction_domain_score	total_performance_score string
+weighted_efficiency_and_cost_reduction_domain_score string,
+total_performance_score string
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTIES
 (
