@@ -50,4 +50,23 @@ LOW IMPORTANCE
 
 The final quality of care score will be based on both the mean and standard deviation for all the scores calculated above
 
-PYTHON OUTPUT HERE
+
+from pyspark.sql.types import *
+from pyspark.sql import HiveContext
+
+context = HiveContext(sc)
+
+# We need to get the range for each applicable metric
+ranges = context.sql('select metric_id, max(score) maximum, min(score) minimum from scores group by metric_id')
+
+# We need to get the scale for each applicable metric (hardcoded table)
+# Create a dataframe with the appropriate values and then join that with ranges
+# Turn the above table into some sort of indexable dictionary in memory here so that you don't have to do the below step
+result = ranges.filter(ranges['metric_id']=='PC_01').select('metric_id')
+result.rdd.flatMap(list).first()
+
+# We want to do a map-reduce here on the hospitals table
+normalize = lambda score, metric: (x-min)/(max-min)
+
+result = context.sql('select * from scores').map(lambda s: (provider_id, metric_id, normalize(score, metric_id) * score)
+
