@@ -1,5 +1,9 @@
 What states are models of high-quality care?
 
-To determine the best states we simply need to perform the same analysis we did to determine the best hospitals but aggregate the results by state, and then consider the mean, meadian, and the variance of scores among the states to determine the best.
+To determine the best states we will aggregate the analysis performed for question by state, and then consider the mean, meadian, and the variance of scores among the states to determine the best.
 
-PYTHON OUTPUT HERE
+An alternative would be to perform the sample analysis in determining best hospitals here, potentially considering more metrics and hospitals. In that way we could essentially determine the best states regardless of the location of a hospital within a state (essentially taking the max score of each metric of all the hospitals in the state). While this would essentially give you the idea of the best care you could get in any given state the metric would be highly volatile year-to-year as it is overly dependant on the performance of your "best" hospitals.
+
+Assumptions
+
+* Any state score is valid regardless of the number of scored hospitals that state contains

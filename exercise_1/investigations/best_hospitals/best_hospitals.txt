@@ -1,18 +1,20 @@
 What hospitals are models of high-quality care? That is, which hospitals have the most consistently high scores for a variety of procedures.
 
-
 To determine the best hospitals we will select some subset of the measures in the parameters table to observe for all hospitals and then take a weighted average of those relevant measures at each hospital to create a score. To select the measures to observe we will use the following critera and assumptions:
 
 * The measure should have a score for a large portion of the hospitals to allow for a robust comparison
-* The measure date should be recent
+* The hospitals have recorded measures on a high percentage of the scores
 * The measure should be relevant to the quality of care for the patient; this is more of a qualitative requirement
 * The measure is not related to payments. Cost is a concern orthogonal to quality of care (that is to say knowing that a procedure has a high cost at a hospital doesn't indicate anything about its quality)
 
 For each measure we will:
 
 * Normalize the score on [0,1] relative to the max and min of the measure across all hospitals
-* Give the lower bound score to any hospitals that do not have a record for the measure
 * Scale that score based on importance (high, medium, low), a subjective assessment
+
+For each provider we will:
+
+* Compute the average of all of their scores
 
 Given the above criteria we have selected the following measures to use in evaluating the quality of care, grouped by importance:
 
@@ -23,13 +25,8 @@ HIGH IMPORTANCE
 * MORT_30_COPD: Chronic Obstructive Pulmonary Disease (COPD) 30-Day Mortality Rate
 * OP_22: Left without being seen
 * OP_25: Safe Surgery Checklist Use
-* HAI_5_NUMERATOR - HAI_5_ELIGCASES: MRSA Bacteremi
 
 MEDIUM IMPORTANCE
-* HAI_2_NUMERATOR - HAI_2_ELIGCASES: Catheter Associated Urinary Tract Infections
-* HAI_3_NUMERATOR - HAI_3_ELIGCASES: SSI - Colon Surgery
-* HAI_4_NUMERATOR - HAI_4_ELIGCASES: SSI - Abdominal Hysterectomy
-* HAI_6_NUMERATOR - HAI_6_ELIGCASES: Clostridium Difficile (C.Diff)
 * READM_30_PN: Pneumonia 30-Day Readmission Rate
 * READM_30_COPD: Chronic Obstructive Pulmonary Disease (COPD) 30-Day Readmission Rate
 * READM_30_HF: Heart Failure (HF) 30-Day Readmission Rate
@@ -48,25 +45,19 @@ LOW IMPORTANCE
 * OP_21: Median Time to Pain Management for Long Bone Fracture
 
 
-The final quality of care score will be based on both the mean and standard deviation for all the scores calculated above
+The final quality of care score will be based on both the mean and standard deviation for all the scores calculated above. As a sanity check we've also included the overall score from the hospitals table to see if we are computing the correct values.
 
-
-from pyspark.sql.types import *
-from pyspark.sql import HiveContext
-
-context = HiveContext(sc)
-
-# We need to get the range for each applicable metric
-ranges = context.sql('select metric_id, max(score) maximum, min(score) minimum from scores group by metric_id')
-
-# We need to get the scale for each applicable metric (hardcoded table)
-# Create a dataframe with the appropriate values and then join that with ranges
-# Turn the above table into some sort of indexable dictionary in memory here so that you don't have to do the below step
-result = ranges.filter(ranges['metric_id']=='PC_01').select('metric_id')
-result.rdd.flatMap(list).first()
-
-# We want to do a map-reduce here on the hospitals table
-normalize = lambda score, metric: (x-min)/(max-min)
-
-result = context.sql('select * from scores').map(lambda s: (provider_id, metric_id, normalize(score, metric_id) * score)
-
++--------------------+-------------+--------------------+---------------------+--------------------+
+|       hospital_name|overall_score|   mean_scaled_score|variance_scaled_score|    sum_scaled_score|
++--------------------+-------------+--------------------+---------------------+--------------------+
+|MASONICARE HEALTH...|            3|0.442390840477418...| 0.057134340644725334|4.866299245251598616|
+|BANNER HEART HOSP...|            5|0.401971433849395...|  0.06664171458345591|4.421685772343350491|
+|KECK HOSPITAL OF USC|            3|0.373576142276038...|  0.07698508079695686|4.482913707312461431|
+|REEVES COUNTY HOS...|            2|0.364334647337314...|  0.07632440596021982|4.736350415385085049|
+|DEBORAH HEART AND...|            4|0.359880012587632...|  0.06863077380426733|4.678440163639223856|
+|CEDAR COUNTY MEMO...|         null|0.342927091925008...|  0.08672365652594166|4.115125103100098907|
+|MERCY HOSPITAL WA...|         null|0.341786339551571...|   0.1038388097992214|3.759649735067287600|
+|BOULDER CITY HOSP...|            3|0.340147735649912...|  0.09244058523947933|5.102216034748686817|
+|GOOD SAMARITAN HO...|            2|0.338869903901951...|  0.07791600397955799|3.727568942921464448|
+|SOUTHWEST GEORGIA...|         null|0.336009032471974...|  0.10443998324352485|3.696099357191719967|
++--------------------+-------------+--------------------+---------------------+--------------------+

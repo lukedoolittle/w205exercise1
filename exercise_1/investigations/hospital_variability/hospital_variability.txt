@@ -1,5 +1,7 @@
 Which procedures have the greatest variability between hospitals?
 
-For variability between procedures we used 2 measures for general numerical variability: the variance and the range, along with the variance as a percentage of the mean
+For variability between hospitals we used the variance as a percentage of the mean as our metric. In exploring the data it does not appear that there are any high variance procedures that we need to filter out due to low sample size.
 
-PYTHON RESULT HERE
+Assumptions
+
+* "Procedures" in the question is actually referring to any metric that is available. Since there is not a way to segment the data by "procedures", event with a good definition, we will leave the analysis open ended to simply look at the variance in scores achieved between hospitals.
