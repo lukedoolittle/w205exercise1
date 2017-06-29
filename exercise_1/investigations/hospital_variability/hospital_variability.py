@@ -9,6 +9,6 @@ context = HiveContext(sc)
 # Also we need to filter out any of the HAI scores since they (appear to)
 # represent number of days/patients which isn't a relevant parameter
 providerCount = context.sql('select count(*) from providers').first()[0]
-result = context.sql('select * from (select metric_id, count(*) score_count, var_samp(score) / avg(score) score_variance_mean_relative from scores group by metric_id) a where score_count > {0} and metric_id not like \'HAI%\' order by score_variance_mean_relative desc'.format(providerCount / 4))
-
-result.take(10)
+resultSql = 'select description, score_variance_mean_relative from (select metric_id, count(*) score_count, var_samp(score) / avg(score) score_variance_mean_relative from scores group by metric_id) a join metrics on a.metric_id = metrics.metric_id where score_count > {0} and a.metric_id not like \'HAI%\' order by score_variance_mean_relative desc'.format(providerCount / 4)
+result = context.sql(resultSql)
+result.show(10, False)
