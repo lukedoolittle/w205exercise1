@@ -1,6 +1,8 @@
+from pyspark import SparkConf, SparkContext
 from pyspark.sql.types import *
 from pyspark.sql import HiveContext
-import decimal
+
+sqlContext = HiveContext(SparkContext(conf=SparkConf().setAppName("investigations")))
 
 # Get the total count of providers scored
 providerCount = sqlContext.sql('select count(*) from providers').first()[0]

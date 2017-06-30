@@ -1,6 +1,4 @@
 from pyspark.sql.types import *
-from pyspark.sql import HiveContext
-import decimal
 
 # Generate the scaled scores table
 execfile("../core/create_scaled_scores.py")

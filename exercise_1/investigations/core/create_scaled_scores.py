@@ -1,6 +1,9 @@
+from pyspark import SparkConf, SparkContext
 from pyspark.sql.types import *
 from pyspark.sql import HiveContext
 import decimal
+
+sqlContext = HiveContext(SparkContext(conf=SparkConf().setAppName("investigations")))
 
 # Create a dictionary that contains the user defined weights for each applicable measure
 weights = dict([('READM_30_HOSP_WIDE', decimal.Decimal(1.0)), 

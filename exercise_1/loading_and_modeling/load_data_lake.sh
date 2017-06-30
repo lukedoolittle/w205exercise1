@@ -32,6 +32,7 @@ declare -A file_mapping=( \
 ["total_scores"]="hvbp_tps_11_10_2016.csv" \
 )
 
+echo "  creating: hospital_compare in hdfs";
 # create the root directory in HDFS
 hdfs dfs -mkdir /user/w205/hospital_compare
 
@@ -40,13 +41,14 @@ hdfs dfs -mkdir /user/w205/hospital_compare
 # (2) create the appropriate subdirectory in HDFS
 # (3) place the modified file in the new subdirectory
 for name in "${!file_mapping[@]}";
-do echo "creating $name in hdfs";
+do echo "  creating: $name in hdfs";
 tail -n +2 "Hospital_Revised_Flatfiles/${file_mapping[$name]}" > "$name.csv";
 hdfs dfs -mkdir /user/w205/hospital_compare/"$name";
 hdfs dfs -put "$name".csv /user/w205/hospital_compare/"$name"
 done
 
 # clean up now unneeded files
+echo "  cleaning up inflated files";
 rm -r Hospital_Revised_Flatfiles
 rm Hospital_Revised_Flatfiles.zip
 
