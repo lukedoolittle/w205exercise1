@@ -23,4 +23,4 @@ Results and Discussion
 |Elective Delivery                                                                                                                                                    |9.42570755121885            |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------+
 
-It is interesting to note that the top 5 metrics all have to do with time based scores. This is actually a sensible conclusion as there can be huge differences in servicing time between differing hospitals.
+We don't have a great sanity check on our results however it is interesting to note that the top 5 metrics all have to do with temporal measures. This is a sensible conclusion as there can be huge differences in servicing time between differing hospitals.

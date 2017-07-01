@@ -23,7 +23,7 @@ ranges = (sqlContext.sql(rangesSql)
 				    .first()
 				    .asDict())
 
-# Normalize the score UNLESS the score does not exist and then return the minimum
+# Normalize the score UNLESS the score does not exist and then use the minimum
 adjust = lambda score, metric: ((score - ranges['min_' + metric])
 								/ (ranges['max_' + metric] - ranges['min_' + metric]) 
 								if score is not None 
