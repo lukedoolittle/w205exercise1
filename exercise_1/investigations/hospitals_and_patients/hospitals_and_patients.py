@@ -30,7 +30,7 @@ weights = dict([('READM_30_HOSP_WIDE', decimal.Decimal(1.0)),
 
 # Get the range of scores for each applicable metric and convert into a dictionary
 rangesSql = 'select metric_id, max(score) maximum, min(score) minimum from scores group by metric_id'
-ranges = dict(range['metric_id'], range for range in map(lambda row: row.asDict(), sqlContext.sql(rangesSql).collect())}
+ranges = dict(range['metric_id'], range for range in map(lambda row: row.asDict(), sqlContext.sql(rangesSql).collect()))
 
 # An adjustment to the score: first we normalize the score over [0,1] and then
 # we apply the pre-chosen weight for each metric
