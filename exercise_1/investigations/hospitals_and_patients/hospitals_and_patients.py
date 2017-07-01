@@ -1,14 +1,10 @@
-from pyspark import SparkConf, SparkContext
 from pyspark.sql.types import *
-from pyspark.sql import HiveContext
 import os 
 
 # Generate the scaled scores table
-os.path.join(os.path.dirname(os.path.realpath(__file__)), 
-			 '../core/create_scaled_scores.py')
-
-sqlContext = HiveContext(SparkContext(conf=SparkConf().setAppName("investigations")))			 
-			 
+execfile(os.path.join(os.path.dirname(os.path.realpath(__file__)), 
+			          '../core/create_scaled_scores.py'))
+					  
 surveyMetrics = ['nurse_communication', 
 				 'doctor_communication', 
 				 'staff_responsiveness', 

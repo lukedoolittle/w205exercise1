@@ -2,8 +2,8 @@ from pyspark.sql.types import *
 import os 
 
 # Generate the scaled scores table
-os.path.join(os.path.dirname(os.path.realpath(__file__)), 
-			 '../core/create_scaled_scores.py')
+execfile(os.path.join(os.path.dirname(os.path.realpath(__file__)), 
+			          '../core/create_scaled_scores.py'))
 
 nonStates = ['PR', 
 			 'VI', 
