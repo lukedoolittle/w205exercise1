@@ -1,7 +1,7 @@
 Are average scores for hospital quality or procedural variability correlated with patient survey responses?
 
-For determining the correlation between patient survey responses and hospital scores first we had to create an aggregate "final survey score" in order to create a comparison to the hospital quality of care score. This was done by BLAH BLAH BLAH.
+For determining the correlation between patient survey responses and hospital scores first we had to create an aggregate "final survey score" in order to create a comparison to the hospital quality of care score. This was done by normalizing each measure and then totaling the result. For missing values the minimum of the survey results was applied. Finally we calculated the correlation between the survey score and the hospital quality of care score.
 
-Finally we can calculate the correlation between the survey score and the hospital quality of care score.
+Results
 
 Survey score correlation: -0.0332574022173

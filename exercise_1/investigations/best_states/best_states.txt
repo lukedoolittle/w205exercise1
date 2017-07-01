@@ -1,8 +1,8 @@
 What states are models of high-quality care?
 
-To determine the best states we will aggregate the analysis performed for question 1 by state, and then consider the mean, meadian, and the variance of scores among the states to determine the best.
+To determine the best states we will aggregate the analysis performed for question 1 by state, and then consider the mean and the variance of scores among the states to determine the best.
 
-An alternative would be to perform the sample analysis in determining best hospitals here, potentially considering more metrics and hospitals. In that way we could essentially determine the best states regardless of the location of a hospital within a state (essentially taking the max score of each metric of all the hospitals in the state). While this would essentially give you the idea of the best care you could get in any given state the metric would be highly volatile year-to-year as it is overly dependant on the performance of your "best" hospitals.
+An alternative would be to perform the sample analysis in determining best hospitals here, potentially considering more metrics. In that way we could essentially determine the best states regardless of the location of a hospital within a state (essentially taking the max score of each metric of all the hospitals in the state). While this would essentially give you the idea of the best care you could get in any given state the metric would be highly volatile year-to-year as it is overly dependant on the performance of your "best" hospitals.
 
 Assumptions
 
@@ -14,14 +14,14 @@ Results
 +-----+----------------------------------------+----------------------+---------------------+-----------+
 |state|mean_scaled_score                       |sum_scaled_score      |variance_scaled_score|score_count|
 +-----+----------------------------------------+----------------------+---------------------+-----------+
-|AR   |0.27088418152905858440724762726488352028|313.954766392178899328|0.07421934204262243  |1159       |
-|NV   |0.26770412450017917579545454545454545455|129.568796258086721085|0.07640606448842828  |484        |
-|VT   |0.26673989504980222836                  |46.679481633715389963 |0.06569907513967971  |175        |
-|ID   |0.26668085838316521793137254901960784314|108.805790220331408916|0.06998077056668779  |408        |
-|NY   |0.26229562975706916151967213114754098361|800.001670759060942635|0.07452960322784562  |3050       |
-|WY   |0.26027008511424320719937694704049844237|83.546697321672069511 |0.07375646063409806  |321        |
-|MT   |0.25670722150416193687860082304526748971|124.759709651022701323|0.06484086289361406  |486        |
-|KS   |0.25504381403561616352443220922229869236|370.578661793750285601|0.06836017695454535  |1453       |
-|NC   |0.25448578039518456769128586609989373007|478.942238703737356395|0.07376718583677506  |1882       |
-|MS   |0.25440843651066508195227606461086637298|346.504290527525841619|0.06952250404896251  |1362       |
+|AR   |0.27088418152905858417083692838654012079|313.954766392178899054|0.07421934204262243  |1159       |
+|NV   |0.26770412450017917551652892561983471074|129.568796258086720950|0.07640606448842828  |484        |
+|VT   |0.26673989504980222818857142857142857143|46.679481633715389933 |0.06569907513967971  |175        |
+|ID   |0.26668085838316521777205882352941176471|108.805790220331408851|0.06998077056668779  |408        |
+|NY   |0.26229562975706916116786885245901639344|800.001670759060941562|0.07452960322784562  |3050       |
+|WY   |0.26027008511424320698130841121495327103|83.546697321672069441 |0.07375646063409806  |321        |
+|MT   |0.25670722150416193667901234567901234568|124.759709651022701226|0.06484086289361406  |486        |
+|KS   |0.25504381403561616331796283551273227805|370.578661793750285301|0.06836017695454535  |1453       |
+|NC   |0.25448578039518456742933049946865037194|478.942238703737355902|0.07376718583677506  |1882       |
+|MS   |0.25440843651066508171659324522760646109|346.504290527525841298|0.06952250404896251  |1362       |
 +-----+----------------------------------------+----------------------+---------------------+-----------+

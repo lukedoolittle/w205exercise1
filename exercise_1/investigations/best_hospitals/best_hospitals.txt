@@ -1,20 +1,10 @@
 What hospitals are models of high-quality care? That is, which hospitals have the most consistently high scores for a variety of procedures.
 
-To determine the best hospitals we will select some subset of the measures in the parameters table to observe for all hospitals and then take a weighted average of those relevant measures at each hospital to create a score. To select the measures to observe we will use the following critera and assumptions:
+To determine the best hospitals we will select some subset of the measures from the parameters table to observe for all hospitals and then take a weighted average of those relevant measures at each hospital to create a score. To select the measures to observe we will use the following critera:
 
 * The measure should have a score for a large portion of the hospitals to allow for a robust comparison
-* The hospitals have recorded measures on a high percentage of the scores
+* The hospitals should have recorded measures on a high percentage of the scores
 * The measure should be relevant to the quality of care for the patient; this is more of a qualitative requirement
-* The measure is not related to payments. Cost is a concern orthogonal to quality of care (that is to say knowing that a procedure has a high cost at a hospital doesn't indicate anything about its quality)
-
-For each measure we will:
-
-* Normalize the score on [0,1] relative to the max and min of the measure across all hospitals
-* Scale that score based on importance (high, medium, low), a subjective assessment
-
-For each provider we will:
-
-* Compute the average of all of their scores
 
 Given the above criteria we have selected the following measures to use in evaluating the quality of care, grouped by importance:
 
@@ -44,8 +34,13 @@ LOW IMPORTANCE
 * OP_20: Median Time from ED Arrival to Provider Contact for ED patients
 * OP_21: Median Time to Pain Management for Long Bone Fracture
 
+Assumptions
 
-The final quality of care score will be based on both the mean and standard deviation for all the scores calculated above. As a sanity check we've also included the overall score from the hospitals table to see if we are computing the correct values.
+* The hospital quality is not related to payments. Cost is a concern orthogonal to quality of care (that is to say knowing that a procedure has a high cost at a hospital doesn't indicate anything about its quality)
+
+For each measure we will normalize the score on [0,1] relative to the max and min of the measure across all hospitals and then scale that score based on importance (high, medium, low), a subjective assessment. Then for each provider we will compute the average of all of their scores. The final quality of care score will be based on both the mean and standard deviation for all the scores calculated above.
+
+Results
 
 +-----------------------------------------+-----+------------------------+---------------------+--------------------+
 |hospital_name                            |state|mean_scaled_score       |variance_scaled_score|sum_scaled_score    |
