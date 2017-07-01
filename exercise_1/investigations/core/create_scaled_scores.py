@@ -4,35 +4,38 @@ from pyspark.sql import HiveContext
 import decimal
 
 sqlContext = HiveContext(SparkContext(conf=SparkConf().setAppName("investigations")))
+high = decimal.Decimal('1.0')
+medium = decimal.Decimal('0.5')
+low = decimal.Decimal('0.1')
 
 # Create a dictionary that contains the user defined weights for each applicable measure
-weights = dict([('READM_30_HOSP_WIDE', decimal.Decimal(1.0)), 
-				('MORT_30_PN', decimal.Decimal(1.0)), 
-				('MORT_30_HF', decimal.Decimal(1.0)), 
-				('MORT_30_COPD', decimal.Decimal(1.0)), 
-				('OP_22', decimal.Decimal(1.0)),
-				('OP_25', decimal.Decimal(1.0)), 
-				('READM_30_PN', decimal.Decimal(0.5)), 
-				('READM_30_COPD', decimal.Decimal(0.5)), 
-				('READM_30_HF', decimal.Decimal(0.5)), 
-				('IMM_2', decimal.Decimal(0.5)), 
-				('OP_17', decimal.Decimal(0.5)), 
-				('OP_12', decimal.Decimal(0.5)), 
-				('OP_10', decimal.Decimal(0.1)), 
-				('OP_11', decimal.Decimal(0.1)), 
-				('OP_9', decimal.Decimal(0.1)), 
-				('ED_1b', decimal.Decimal(0.1)), 
-				('ED_2b', decimal.Decimal(0.1)), 
-				('OP_18b', decimal.Decimal(0.1)), 
-				('OP_20', decimal.Decimal(0.1)), 
-				('OP_21', decimal.Decimal(0.1))])
+weights = dict([('READM_30_HOSP_WIDE', high), 
+				('MORT_30_PN', high), 
+				('MORT_30_HF', high), 
+				('MORT_30_COPD', high), 
+				('OP_22', high),
+				('OP_25', high), 
+				('READM_30_PN', medium), 
+				('READM_30_COPD', medium), 
+				('READM_30_HF', medium), 
+				('IMM_2', medium), 
+				('OP_17', medium), 
+				('OP_12', medium), 
+				('OP_10', low), 
+				('OP_11', low), 
+				('OP_9', low), 
+				('ED_1b', low), 
+				('ED_2b', low), 
+				('OP_18b', low), 
+				('OP_20', low), 
+				('OP_21', low)])
 
 # Get the range of scores for each applicable metric and convert into a dictionary
 rangesSql = 'select metric_id, max(score) maximum, min(score) minimum from scores group by metric_id'
-ranges = {range['metric_id']: range 
-							  for range 
-							  in map(lambda row: row.asDict(), 
-												 sqlContext.sql(rangesSql).collect())}
+ranges = dict((range['metric_id'], range) 
+			   for range 
+			   in map(lambda row: row.asDict(), 
+								  sqlContext.sql(rangesSql).collect()))
 
 # An adjustment to the score: first we normalize the score over [0,1] and then
 # we apply the pre-chosen weight for each metric
@@ -49,7 +52,7 @@ scaledScoresSql = ('select * from scores where score is not null and metric_id i
 				   .format(','.join(['\'' + member + '\'' 
 									for member 
 									in weights.keys()])))
-(sqlContext.sql(intermediateSql)
+(sqlContext.sql(scaledScoresSql)
 		   .map(lambda row: (row.provider_id, 
 							 adjust(row.score, row.metric_id)))
 		   .toDF()
