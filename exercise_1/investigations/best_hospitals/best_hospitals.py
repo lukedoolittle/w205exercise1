@@ -1,5 +1,4 @@
 from pyspark.sql.types import *
-import decimal
 
 # Generate the scaled scores table
 execfile("../core/create_scaled_scores.py")
