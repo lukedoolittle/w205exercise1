@@ -1,4 +1,6 @@
+from pyspark import SparkConf, SparkContext
 from pyspark.sql.types import *
+from pyspark.sql import HiveContext
 import os 
 
 # Generate the scaled scores table
