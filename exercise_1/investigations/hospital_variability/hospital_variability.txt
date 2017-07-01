@@ -6,7 +6,7 @@ Assumptions
 
 * "Procedures" in the question is actually referring to any metric that is available. Since there is not a way to segment the data by "procedures", even with a good definition, we will leave the analysis open ended to simply look at the variance in metric scores achieved between hospitals.
 
-Results
+Results and Discussion
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------+
 |description                                                                                                                                                          |score_variance_mean_relative|
@@ -22,3 +22,5 @@ Results
 |Percentage of patients aged 18 years and older who had cataract surgery and had improvement in visual function achieved within 90 days following the cataract surgery|10.239579347089322          |
 |Elective Delivery                                                                                                                                                    |9.42570755121885            |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------+
+
+It is interesting to note that the top 5 metrics all have to do with time based scores. This is actually a sensible conclusion as there can be huge differences in servicing time between differing hospitals.
