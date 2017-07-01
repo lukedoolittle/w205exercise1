@@ -49,4 +49,4 @@ result = (scores.join(surveys, scores.provider_id == surveys.provider_id)
 				.stat
 				.corr("mean_scaled_score", 
 					  "scaled_survey_score"))
-print "Survey score correlation: {}".format(result)
+print "Survey score correlation: {0}".format(result)
