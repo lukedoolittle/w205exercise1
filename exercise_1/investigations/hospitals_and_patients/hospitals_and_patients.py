@@ -10,7 +10,7 @@ medium = decimal.Decimal('0.5')
 low = decimal.Decimal('0.1')
 
 # Create a dictionary that contains the user defined weights for each applicable measure
-weights = dict([('READM_30_HOSP_WIDE', ), 
+weights = dict([('READM_30_HOSP_WIDE', high), 
 				('MORT_30_PN', high), 
 				('MORT_30_HF', high), 
 				('MORT_30_COPD', high), 
