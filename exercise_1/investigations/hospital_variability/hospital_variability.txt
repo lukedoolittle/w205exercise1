@@ -7,6 +7,7 @@ Assumptions
 * "Procedures" in the question is actually referring to any metric that is available. Since there is not a way to segment the data by "procedures", event with a good definition, we will leave the analysis open ended to simply look at the variance in scores achieved between hospitals.
 
 Results
+
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------+
 |description                                                                                                                                                          |score_variance_mean_relative|
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------+

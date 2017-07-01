@@ -4,4 +4,4 @@ For determining the correlation between patient survey responses and hospital sc
 
 Finally we can calculate the correlation between the survey score and the hospital quality of care score.
 
-PYTHON OUTPUT HERE
+Survey score correlation: -0.0332574022173
